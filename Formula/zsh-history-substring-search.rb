@@ -8,11 +8,15 @@ class ZshHistorySubstringSearch < Formula
 
   def install
     inreplace "README.md", "source zsh-history", "source #{opt_prefix}/zsh-history"
-    prefix.install Dir["*.zsh"]
+    zsh_function.install "zsh-history-substring-search.zsh" => "zsh-history-substring-search"
   end
 
   def caveats; <<-EOS.undent
-    For setup instructions:
+    Load this script into your interactive ZSH session:
+
+      autoload -Uz zsh-history-substring-search && zsh-history-substring-search
+
+    For more setup instructions:
       more "#{opt_prefix}/README.md"
     EOS
   end
